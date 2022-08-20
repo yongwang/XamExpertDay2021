@@ -16,13 +16,13 @@ namespace OidcSample.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        private const string AuthorityUrl = "https://xamarinoidc-app.azurewebsites.net";
+        private const string AuthorityUrl = "https://keycloak-grimaldi.abxinternal.com/auth/realms/grimaldi";
         private Credentials? _credentials;
         private readonly OidcIdentityService _oidcIdentityService;
 
         public MainViewModel()
         {
-            _oidcIdentityService = new OidcIdentityService("gnabbermobileclient", App.CallbackScheme, App.SignoutCallbackScheme, "openid profile offline_access", AuthorityUrl);
+            _oidcIdentityService = new OidcIdentityService("Airbox-App-client", App.CallbackScheme, App.SignoutCallbackScheme, "openid profile email offline_access", AuthorityUrl);
             ExecuteLogin = new Command(Login);
             ExecuteRefresh = new Command(RefreshTokens);
             ExecuteLogout = new Command(Logout);
